@@ -4,19 +4,15 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
-    networks:
-      - network1
   messaging-1:
     build:
       context: ./
       dockerfile: Dockerfile
     image: david/messaging
     environment:
-      - spring.redis.host=redis
+      - SPRING_REDIS_HOST=redis
     ports:
       - 8080
-    networks:
-      - network1
     depends_on:
       - redis
   messaging-2:
@@ -25,11 +21,9 @@ services:
       dockerfile: Dockerfile
     image: david/messaging
     environment:
-      - spring.redis.host=redis
+      - SPRING_REDIS_HOST=redis
     ports:
       - 8080
-    networks:
-      - network1
     depends_on:
       - redis
   messaging-3:
@@ -38,13 +32,8 @@ services:
       dockerfile: Dockerfile
     image: david/messaging
     environment:
-      - spring.redis.host=redis
+      - SPRING_REDIS_HOST=redis
     ports:
       - 8080
-    networks:
-      - network1
     depends_on:
       - redis
-
-networks:
-  network1

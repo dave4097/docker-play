@@ -1,5 +1,5 @@
 FROM openjdk:11-jre-slim
-COPY ./target/messaging-1.0-SNAPSHOT.jar /usr/src/messaging/
+COPY **/messaging-1.0-SNAPSHOT.jar /usr/src/messaging/app.jar
 WORKDIR /usr/src/messaging
 EXPOSE 8080
-CMD ["java", "-jar", "messaging-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app.jar"]
