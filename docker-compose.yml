@@ -2,6 +2,10 @@ version: '3'
 services:
   redis:
     image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - network1
   messaging-1:
     build:
       context: ./
@@ -11,6 +15,8 @@ services:
       - 8080
     networks:
       - network1
+    depends_on:
+      - redis
   messaging-2:
     build:
       context: ./
@@ -20,6 +26,8 @@ services:
       - 8080
     networks:
       - network1
+    depends_on:
+      - redis
   messaging-3:
     build:
       context: ./
@@ -29,6 +37,8 @@ services:
       - 8080
     networks:
       - network1
-
+    depends_on:
+      - redis
+	  
 networks:
   network1:
